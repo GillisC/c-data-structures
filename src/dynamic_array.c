@@ -22,12 +22,16 @@ dynamic_array *create_dynamic_array(size_t initial_capacity)
 
 void da_resize(dynamic_array *array) 
 {
+    assert(array);
+
     array->capacity *= 2;
-    int *new_data = realloc(array->data, array->capacity);
+
+    int *new_data = realloc(array->data, array->capacity * sizeof(int));
     if (!new_data) 
     {
-        fprintf(stderr, "memory reallocation failed\n");
+        fprintf(stderr, "Error occurred when resizing dynamic array\n");
     }
+
     array->data = new_data;
 }
 

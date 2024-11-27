@@ -25,15 +25,20 @@ void test_stack_002()
     stack *s = create_stack(1);
     ASSERT_NOTNULL(s);
 
+    // push 10 elements
     for (int i=0; i<10; i++)
     {
         push(s, i);
     }
+
+    // pop 10 elements 
     for (int i=9; i>=0; i--)
     {
         int num = pop(s);
         ASSERT_EQUALS(num, i);
     }
+    // after popping all elements from the stack it should be empty
+    ASSERT(stack_size(s) == 0);
 }
 
 
