@@ -9,12 +9,15 @@ set(SOURCE_FILES
     src/main.c
     src/dynamic_array.c
     src/stack.c
+    src/queue.c
 )
 
 # Create a library for shared code
 add_library(data_structures_lib
+    src/linear_data_structure.c
     src/dynamic_array.c
     src/stack.c
+    src/queue.c
 )
 
 target_include_directories(data_structures_lib PUBLIC

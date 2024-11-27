@@ -7,38 +7,38 @@
 void test_stack_001() 
 {
     printf("Running test_stack_001 (stack creation)\n");
-    stack *s = create_stack(1);
-    ASSERT_NOTNULL(s);
+    lin_ds *stack = create_lin_ds(1);
+    ASSERT_NOTNULL(stack);
 
-    ASSERT(stack_is_empty(s));
-    push(s, 1);
-    ASSERT_EQUALS(stack_size(s), 1);
-    ASSERT_EQUALS(head(s), 1);
-    ASSERT_EQUALS(pop(s), 1);
-    ASSERT_EQUALS(stack_size(s), 0);    
+    ASSERT(is_empty(stack));
+    push(stack, 1);
+    ASSERT_EQUALS(size(stack), 1);
+    ASSERT_EQUALS(head(stack), 1);
+    ASSERT_EQUALS(pop(stack), 1);
+    ASSERT_EQUALS(size(stack), 0);    
 }
 
 void test_stack_002()
 {
     printf("Running test_stack_002 (stack push & pop)\n");
 
-    stack *s = create_stack(1);
-    ASSERT_NOTNULL(s);
+    lin_ds *stack = create_lin_ds(1);
+    ASSERT_NOTNULL(stack);
 
     // push 10 elements
     for (int i=0; i<10; i++)
     {
-        push(s, i);
+        push(stack, i);
     }
 
     // pop 10 elements 
     for (int i=9; i>=0; i--)
     {
-        int num = pop(s);
+        int num = pop(stack);
         ASSERT_EQUALS(num, i);
     }
     // after popping all elements from the stack it should be empty
-    ASSERT(stack_size(s) == 0);
+    ASSERT(size(stack) == 0);
 }
 
 

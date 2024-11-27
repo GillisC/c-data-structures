@@ -7,7 +7,6 @@
 #include "stack.h"
 
 
-
 // This project is made to learn c more deeply, 
 // refresh knowledge and implementation details of common data structures
 // refresh memory on sorting algorithms
@@ -21,9 +20,9 @@
 
 int main(void) {
     
-    stack *s = create_stack(1);
-    push(s, 1);
-    printf("stack empty? : %d\n", stack_is_empty(s));
+    lin_ds *stack = create_lin_ds(1);
+    push(stack, 1);
+    printf("stack empty? : %d\n", is_empty(stack));
     
     return 0;
 }

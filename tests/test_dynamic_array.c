@@ -7,17 +7,17 @@
 void test_dynamic_array_001() 
 {
     printf("Running test_dynamic_array_001 (dynamic_array creation)\n");
-    dynamic_array *arr = create_dynamic_array(1);
+    lin_ds *arr = create_lin_ds(1);
     ASSERT_NOTNULL(arr);
     append(arr, 1);
     ASSERT_EQUALS(at(arr, 0), 1);
-    ASSERT_EQUALS(da_size(arr), 1);
+    ASSERT_EQUALS(size(arr), 1);
 }
 
 void test_dynamic_array_002() 
 {
     printf("Running test_dynamic_array_002 (dynamic_array memory allocation)\n");
-    dynamic_array *arr = create_dynamic_array(1);
+    lin_ds *arr = create_lin_ds(1);
     ASSERT_NOTNULL(arr);
 
     for (int i=0; i<10; i++)
@@ -35,7 +35,7 @@ void test_dynamic_array_002()
 void test_dynamic_array_003()
 {
     printf("Running test_dynamic_array_003 (dynamic_array append)\n");
-    dynamic_array *arr = create_dynamic_array(1);
+    lin_ds *arr = create_lin_ds(1);
     ASSERT_NOTNULL(arr);
 
     for (int i = 0; i < 1000000; i++) {
