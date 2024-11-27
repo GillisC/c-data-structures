@@ -8,11 +8,13 @@ set(CMAKE_C_FLAGS "-Wall -g")
 set(SOURCE_FILES
     src/main.c
     src/dynamic_array.c
+    src/stack.c
 )
 
 # Create a library for shared code
 add_library(data_structures_lib
     src/dynamic_array.c
+    src/stack.c
 )
 
 target_include_directories(data_structures_lib PUBLIC

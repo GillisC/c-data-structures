@@ -21,18 +21,18 @@ build:
 	@$(CMAKE) --build $(BUILD_DIR)
 
 run_main: $(MAIN_PROGRAM)
-	@echo "Running main program..."
+	@echo "Running main program...\n"
 	@$(MAIN_PROGRAM)
 
 run_tests: $(TEST_PROGRAM)
-	@echo "Running test program..."
+	@echo "Running test program...\n"
 	@$(TEST_PROGRAM)
 
 test: build
-	@echo "Running tests..."
+	@echo "Running tests...\n"
 	@$(BUILD_DIR)/tests/test
 
 clean:
-	@echo "Cleaning up..."
+	@echo "Cleaning up...\n"
 	@rm -rf $(BUILD_DIR)
 	

@@ -1,47 +1,76 @@
 #include "stack.h"
 
-stack *create_stack(int initial_capacity)
+stack *create_stack(size_t initial_capacity)
 {
-    stack *stack = malloc(stack);
-    if (stack == NULL) return NULL;
+    stack *s = malloc(sizeof(stack));
+    if (s == NULL) return NULL;
 
-    stack->data = malloc(initial_capacity * sizeof(int));
-    if (stack->data == NULL) return NULL;
+    s->data = malloc(initial_capacity * sizeof(int));
+    if (s->data == NULL) return NULL;
 
-    stack->capacity = initial_capacity;
-    stack->size = 0;
+    s->capacity = initial_capacity;
+    s->size = 0;
 
-    return stack;
+    return s;
 }
 
-void resize(stack *s)
+void stack_resize(stack *s)
 {
+    assert(s);
+
     s->capacity *= 2;
-    stack *new_stack = create_stack(s->capacity);
-    new_stack->data = realloc(s, s->capacity * sizeof(int));
+    int *new_data = realloc(s->data, s->capacity * sizeof(int));
 
-    if (new_stack->data) 
+    if (!new_data) 
     {
-        free(s->data);
-        *s = *new_stack;
-        free(new_stack->data);
-        free(new_stack);
+        fprintf(stderr, "Error occured when resizing stack\n");
     }
-    else
-    {
-        return NULL;
-    }
+    s->data = new_data;
 }
 
-void push(stack* s, int element) 
+void push(stack *s, int element) 
 {
+    assert(s);
+
     if (s->size >= s->capacity) 
     {
-        resize(s);
+        stack_resize(s);
     }
     s->data[s->size] = element;
     s->size++;
 }
 
-// TODO
-int pop(stack*);
+
+int pop(stack *s)
+{
+    assert(s);
+
+    if (s->size <= 0)
+    {
+        return 0;
+    }
+    int result = s->data[s->size - 1];
+    s->size--;
+    return result;
+}
+
+
+int head(stack *s)
+{
+    assert(!stack_is_empty(s));
+    return s->data[s->size - 1];
+}
+
+
+int stack_size(stack *s)
+{
+    assert(s);
+    return s->size;
+}
+
+
+bool stack_is_empty(stack *s)
+{
+    assert(s);
+    return ((stack_size(s)) == 0);
+}

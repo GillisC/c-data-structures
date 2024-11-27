@@ -1,7 +1,8 @@
 # Add the test executable
 add_executable(test_program 
     main.c
-    test_dynamic_array.c  # Ensure this points to your test file in the tests folder
+    test_dynamic_array.c
+    test_stack.c
 )
 
 # Include directories for the test program

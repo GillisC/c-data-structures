@@ -20,14 +20,15 @@ dynamic_array *create_dynamic_array(size_t initial_capacity)
     return array;
 }
 
-void resize(dynamic_array *array) 
+void da_resize(dynamic_array *array) 
 {
     array->capacity *= 2;
-    array->data = realloc(&array->data, array->capacity);
-    if (!array->data) 
+    int *new_data = realloc(array->data, array->capacity);
+    if (!new_data) 
     {
         fprintf(stderr, "memory reallocation failed\n");
     }
+    array->data = new_data;
 }
 
 
@@ -35,7 +36,7 @@ void append(dynamic_array *array, int element)
 {
     if (array->size >= array->capacity) 
     {
-        resize(array);
+        da_resize(array);
     }
     array->data[array->size] = element;
     array->size++;
@@ -50,7 +51,7 @@ int at(dynamic_array *array, int index)
     return array->data[index];
 }
 
-int size(dynamic_array *array) 
+int da_size(dynamic_array *array) 
 {
     return array->size;
 }

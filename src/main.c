@@ -1,4 +1,12 @@
+// Standard library includes
 #include <stdio.h>
+
+
+// Others
+#include "dynamic_array.h"
+#include "stack.h"
+
+
 
 // This project is made to learn c more deeply, 
 // refresh knowledge and implementation details of common data structures
@@ -12,6 +20,10 @@
 //   hash table, hash set, hash map
 
 int main(void) {
-    printf("running main program");
+    
+    stack *s = create_stack(1);
+    push(s, 1);
+    printf("stack empty? : %d\n", stack_is_empty(s));
+    
     return 0;
 }
