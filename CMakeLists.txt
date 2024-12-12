@@ -4,6 +4,8 @@ project(DataStructures)
 # Set C flags
 set(CMAKE_C_FLAGS "-Wall -g")
 
+set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+
 # Specify the source files
 set(SOURCE_FILES
     src/main.c
