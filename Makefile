@@ -1,7 +1,7 @@
 # Define directories
 BUILD_DIR := build
 
-MAIN_PROGRAM := $(BUILD_DIR)/main_program
+MAIN_PROGRAM := $(BUILD_DIR)/main/main_program
 TEST_PROGRAM := $(BUILD_DIR)/tests/test_program
 
 # Tools

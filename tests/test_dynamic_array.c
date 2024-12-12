@@ -1,56 +1,49 @@
-#include <stdio.h>
-
+#include "test.h"
 #include "dynamic_array.h"
 
-#include "test.h"
-
 void test_dynamic_array_001() 
-{
-    printf("Running test_dynamic_array_001 (dynamic_array creation)\n");
+{   
     lin_ds *arr = create_lin_ds(1);
-    ASSERT_NOTNULL(arr);
+    CU_ASSERT_PTR_NOT_NULL(arr);
+    
     append(arr, 1);
-    ASSERT_EQUALS(at(arr, 0), 1);
-    ASSERT_EQUALS(size(arr), 1);
+    CU_ASSERT_EQUAL(at(arr, 0), 1);
+    CU_ASSERT_EQUAL(size(arr), 1);
 }
 
 void test_dynamic_array_002() 
 {
-    printf("Running test_dynamic_array_002 (dynamic_array memory allocation)\n");
     lin_ds *arr = create_lin_ds(1);
-    ASSERT_NOTNULL(arr);
+    CU_ASSERT_PTR_NOT_NULL(arr);
 
     for (int i=0; i<10; i++)
     {
         append(arr, i);
     }
-    ASSERT(arr->capacity > 10);
+    CU_ASSERT(arr->capacity > 10);
 
     for (int i=0; i<10; i++)
     {
-        ASSERT(at(arr, i) == i);
+        CU_ASSERT(at(arr, i) == i);
     }
 }
 
 void test_dynamic_array_003()
 {
-    printf("Running test_dynamic_array_003 (dynamic_array append)\n");
     lin_ds *arr = create_lin_ds(1);
-    ASSERT_NOTNULL(arr);
+    CU_ASSERT_PTR_NOT_NULL(arr);
 
     for (int i = 0; i < 1000000; i++) {
         append(arr, i);
     }
 
-    ASSERT(arr->data[999999] == 999999);
+    CU_ASSERT(arr->data[999999] == 999999);
 }
 
 
-void test_dynamic_array()
+void register_test_dynamic_array(CU_pSuite suite)
 {
-    printf("Testing dynamic array...\n");
-    test_dynamic_array_001();
-    test_dynamic_array_002();
-    test_dynamic_array_003();
-    printf("All tests passed!\n\n");
+    CU_add_test(suite, "Test append and at", test_dynamic_array_001);
+    CU_add_test(suite, "Test append and at more", test_dynamic_array_002);
+    CU_add_test(suite, "Test append on large array", test_dynamic_array_003);
 }
