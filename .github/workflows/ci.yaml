@@ -20,6 +20,9 @@ jobs:
         with:
           submodules: true
 
+      - name: Initialize vcpkg submodule
+        run: git submodule update --init --recursive
+
       - name: Install dependencies and Build
         run: |
           make install
