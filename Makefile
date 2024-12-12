@@ -1,7 +1,7 @@
 # Define directories
 BUILD_DIR := build
 
-MAIN_PROGRAM := $(BUILD_DIR)/main/main_program
+MAIN_PROGRAM := $(BUILD_DIR)/main_program
 TEST_PROGRAM := $(BUILD_DIR)/tests/test_program
 
 # Tools
@@ -24,13 +24,13 @@ install:
 	@echo "Installing dependencies..."
 	@./vcpkg/vcpkg install cunit
 
-run: $(MAIN_PROGRAM)
+run: build
 	@echo "Running main program...\n"
 	@$(MAIN_PROGRAM)
 
 test: build
 	@echo "Running tests...\n"
-	@$(BUILD_DIR)/tests/test
+	@$(TEST_PROGRAM)
 
 clean:
 	@echo "Cleaning up...\n"
