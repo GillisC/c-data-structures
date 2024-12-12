@@ -1,29 +1,25 @@
-#include <stdio.h>
-
+#include "test.h"
 #include "stack.h"
 
-#include "test.h"
 
 void test_stack_001() 
 {
-    printf("Running test_stack_001 (stack creation)\n");
     lin_ds *stack = create_lin_ds(1);
-    ASSERT_NOTNULL(stack);
-
-    ASSERT(is_empty(stack));
+    CU_ASSERT_PTR_NOT_NULL(stack);
+    CU_ASSERT(is_empty(stack));
+    
     push(stack, 1);
-    ASSERT_EQUALS(size(stack), 1);
-    ASSERT_EQUALS(head(stack), 1);
-    ASSERT_EQUALS(pop(stack), 1);
-    ASSERT_EQUALS(size(stack), 0);    
+    CU_ASSERT_EQUAL(size(stack), 1);
+    CU_ASSERT_EQUAL(head(stack), 1);
+    CU_ASSERT_EQUAL(pop(stack), 1);
+    CU_ASSERT_EQUAL(size(stack), 0);    
 }
+
 
 void test_stack_002()
 {
-    printf("Running test_stack_002 (stack push & pop)\n");
-
     lin_ds *stack = create_lin_ds(1);
-    ASSERT_NOTNULL(stack);
+    CU_ASSERT_PTR_NOT_NULL(stack);
 
     // push 10 elements
     for (int i=0; i<10; i++)
@@ -35,19 +31,15 @@ void test_stack_002()
     for (int i=9; i>=0; i--)
     {
         int num = pop(stack);
-        ASSERT_EQUALS(num, i);
+        CU_ASSERT_EQUAL(num, i);
     }
     // after popping all elements from the stack it should be empty
-    ASSERT(size(stack) == 0);
+    CU_ASSERT(size(stack) == 0);
 }
 
 
-
-void test_stack()
+void register_test_stack(CU_pSuite suite)
 {   
-    printf("Testing stack...\n");
-    test_stack_001();
-    test_stack_002();
-    printf("All tests passed!\n\n");
-
+    CU_add_test(suite, "Initialization", test_stack_001);
+    CU_add_test(suite, "Push and Pop", test_stack_002);
 }
