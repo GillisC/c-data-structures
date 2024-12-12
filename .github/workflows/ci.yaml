@@ -22,8 +22,7 @@ jobs:
 
       - name: Install dependencies and Build
         run: |
-          git submodule update --init --recursive
-          ./vcpkg/bootstrap-vcpkg.sh
+          sudo apt-get install libcunit1-dev
           make install
           make
 
