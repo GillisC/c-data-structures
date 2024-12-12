@@ -18,8 +18,9 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Install dependencies and Build
-      run: make install
-      run: make
+      run: |
+        make install
+        make
 
     - name: Run Tests
       run: make test
