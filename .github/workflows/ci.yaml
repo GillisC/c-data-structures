@@ -20,11 +20,10 @@ jobs:
         with:
           submodules: true
 
-      - name: Initialize vcpkg submodule
-        run: git submodule update --init --recursive
-
       - name: Install dependencies and Build
         run: |
+          git submodule update --init --recursive
+          ./vcpkg/bootstrap-vcpkg.sh
           make install
           make
 
