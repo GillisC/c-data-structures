@@ -4,7 +4,6 @@ on:
   push:
     branches: 
       - master
-      - 4-use-github-actions-to-enable-automated-building-and-testing-of-the-project
   pull_request:
     branches:
       - master
@@ -15,13 +14,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Install dependencies and Build
-      run: |
-        make install
-        make
-
-    - name: Run Tests
-      run: make test
       
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Install dependencies and Build
+        run: |
+          make install
+          make
+
+      - name: Run Tests
+        run: make test
+        
